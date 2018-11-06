@@ -5,7 +5,7 @@ cd C:/
 md SetupDownloads
 cd SetupDownloads
 :DownloadSetupFiles
-bitsadmin /transfer SetupFiles /download /priority high (files url) C:/SetupDownloads/7z.exe || goto :FailedToRunBitsadmin
+bitsadmin /transfer 7z /download /priority high https://github.com/MaltronCraft/Batch-Setups/releases/download/7z/7za.exe C:/SetupDownloads/7z.exe || goto :FailedToRunBitsadmin
 bitsadmin /transfer SetupFiles /download /priority high (files url) C:/SetupDownloads/(file name) || goto :FailedToRunBitsadmin
 echo Files downloaded!
 :Extract
@@ -13,6 +13,7 @@ echo Extracting setup files!
 7z e (setup file name zip) || goto :ExtractFailed
 :Install
 (T & A code placeholder)
+:AcceptedAgreement
 echo Installing!
 (copy code placeholder) || goto :InstallFailed
 (verify code placeholder)
@@ -32,3 +33,6 @@ exit 1
 :Complete
 echo Install complete!
 exit 0
+:DeniedAgreement
+echo Exiting due to Terms and Agreements were not accepted.
+exit 1
